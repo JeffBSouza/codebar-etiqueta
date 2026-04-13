@@ -108,11 +108,20 @@ function processar() {
         return;
     }
 
-    // Ajuste: posição começa em 1 (igual seu exemplo)
+    // 🔴 VALIDAÇÃO NOVA
+    if ((iniProd - 1 + tamProd) > codigo.length) {
+        alert("TAMANHO INVALIDO - EXCEDE POSIÇÃO INICIO (CÓDIGO PRODUTO)");
+        return;
+    }
+
+    if ((iniPreco - 1 + tamPreco) > codigo.length) {
+        alert("TAMANHO INVALIDO - EXCEDE POSIÇÃO INICIO (PREÇO)");
+        return;
+    }
+
     let codProduto = codigo.substr(iniProd - 1, tamProd);
     let precoBruto = codigo.substr(iniPreco - 1, tamPreco);
 
-    // Formatar preço (últimos 2 dígitos = centavos)
     let precoFormatado = precoBruto.slice(0, -2) + "," + precoBruto.slice(-2);
 
     document.getElementById("resProd").innerText = codProduto;
