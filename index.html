@@ -21,7 +21,7 @@ body {
     background: #111827;
     padding: 30px;
     border-radius: 12px;
-    width: 600px;
+    width: 650px;
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
 }
 
@@ -41,14 +41,21 @@ body {
     opacity: 0.7;
 }
 
-h2 {
-    text-align: center;
+.linha {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0 15px 0;
+.linha label {
+    width: 260px;
+    font-size: 14px;
+}
+
+.linha input {
+    flex: 1;
+    padding: 8px;
     border-radius: 6px;
     border: none;
 }
@@ -61,6 +68,7 @@ button {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 button:hover {
@@ -88,26 +96,42 @@ button:hover {
         <span class="versao">v1</span>
     </div>
 
-    <label>Código Barras Etiqueta:</label>
-    <input type="text" id="codigo">
+    <div class="linha">
+        <label>Código Barras Etiqueta:</label>
+        <input type="text" id="codigo">
+    </div>
 
-    <label>Início Cod Produto:</label>
-    <input type="number" id="iniProd">
+    <div class="linha">
+        <label>Informe o Código do Produto:</label>
+        <input type="text" id="codInformado">
+    </div>
 
-    <label>Tamanho Cod Produto:</label>
-    <input type="number" id="tamProd">
+    <div class="linha">
+        <label>Início Cod Produto:</label>
+        <input type="number" id="iniProd">
+    </div>
 
-    <label>Início Preço Produto:</label>
-    <input type="number" id="iniPreco">
+    <div class="linha">
+        <label>Tamanho Cod Produto:</label>
+        <input type="number" id="tamProd">
+    </div>
 
-    <label>Tamanho Preço Produto:</label>
-    <input type="number" id="tamPreco">
+    <div class="linha">
+        <label>Início Preço Produto:</label>
+        <input type="number" id="iniPreco">
+    </div>
+
+    <div class="linha">
+        <label>Tamanho Preço Produto:</label>
+        <input type="number" id="tamPreco">
+    </div>
 
     <button onclick="processar()">Processar</button>
 
     <div class="result">
-        <div><span class="label">Código Produto:</span> <span id="resProd">-</span></div>
-        <div><span class="label">Preço Produto:</span> <span id="resPreco">-</span></div>
+        <div><span class="label">Código Produto da etiqueta:</span> <span id="resProd">-</span></div>
+        <div><span class="label">Preço/Peso Produto da etiqueta:</span> <span id="resPreco">-</span></div>
+        <div><span class="label">Código Item informado:</span> <span id="resCodInf">-</span></div>
     </div>
 </div>
 
@@ -115,6 +139,7 @@ button:hover {
 function processar() {
 
     let codigo = document.getElementById("codigo").value;
+    let codInformado = document.getElementById("codInformado").value;
 
     let iniProd = parseInt(document.getElementById("iniProd").value);
     let tamProd = parseInt(document.getElementById("tamProd").value);
@@ -127,7 +152,7 @@ function processar() {
         return;
     }
 
-    // 🔴 VALIDAÇÃO NOVA
+    // 🔴 VALIDAÇÕES
     if ((iniProd - 1 + tamProd) > codigo.length) {
         alert("TAMANHO INVALIDO - EXCEDE POSIÇÃO INICIO (CÓDIGO PRODUTO)");
         return;
@@ -145,6 +170,7 @@ function processar() {
 
     document.getElementById("resProd").innerText = codProduto;
     document.getElementById("resPreco").innerText = precoFormatado;
+    document.getElementById("resCodInf").innerText = codInformado;
 }
 </script>
 
