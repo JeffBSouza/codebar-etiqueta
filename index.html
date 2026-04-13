@@ -237,6 +237,33 @@ function processar() {
     document.getElementById("resPreco").innerText = precoFormatado;
     document.getElementById("resCodInf").innerText = codInformado.value;
 }
+function limparCampos() {
+
+    // limpar inputs
+    document.getElementById("codigo").value = "";
+    document.getElementById("codInformado").value = "";
+    document.getElementById("iniProd").value = "";
+    document.getElementById("tamProd").value = "";
+    document.getElementById("iniPreco").value = "";
+    document.getElementById("tamPreco").value = "";
+
+    // limpar resultados
+    document.getElementById("resProd").innerText = "-";
+    document.getElementById("resPreco").innerText = "-";
+    document.getElementById("resCodInf").innerText = "-";
+
+    // limpar status
+    let status = document.getElementById("statusMsg");
+    status.innerText = "";
+    status.className = "status";
+
+    // remover estilos de erro/sucesso
+    let codInformado = document.getElementById("codInformado");
+    codInformado.classList.remove("erro-input", "ok-input");
+
+    // focar no primeiro campo (melhor UX)
+    document.getElementById("codigo").focus();
+}
 </script>
 
 </body>
