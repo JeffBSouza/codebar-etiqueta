@@ -25,6 +25,22 @@ body {
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+}
+
+.versao {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
 h2 {
     text-align: center;
 }
@@ -67,7 +83,10 @@ button:hover {
 <body>
 
 <div class="card">
-    <h2>Leitor de Etiqueta</h2>
+    <div class="header">
+        <h2>Leitor de Etiqueta</h2>
+        <span class="versao">v1</span>
+    </div>
 
     <label>Código Barras Etiqueta:</label>
     <input type="text" id="codigo">
