@@ -41,6 +41,23 @@ body {
     opacity: 0.7;
 }
 
+.bloco {
+    background: #0f172a;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.bloco-titulo {
+    font-size: 13px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #93c5fd;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 .linha {
     display: flex;
     align-items: center;
@@ -77,7 +94,6 @@ button {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    margin-top: 10px;
 }
 
 button:hover {
@@ -107,6 +123,7 @@ button:hover {
 .status.erro {
     color: #ef4444;
 }
+
 .botoes {
     display: flex;
     gap: 10px;
@@ -123,7 +140,7 @@ button:hover {
 
 .limpar:hover {
     background: #4b5563;
-} 
+}
 </style>
 </head>
 
@@ -135,34 +152,49 @@ button:hover {
         <span class="versao">v4</span>
     </div>
 
-    <div class="linha">
-        <label>Código Barras Etiqueta:</label>
-        <input type="text" id="codigo">
+    <!-- BLOCO 1 -->
+    <div class="bloco">
+        <div class="bloco-titulo">Dados da Etiqueta</div>
+
+        <div class="linha">
+            <label>Código Barras Etiqueta:</label>
+            <input type="text" id="codigo">
+        </div>
+
+        <div class="linha">
+            <label>Informe o Código do Produto:</label>
+            <input type="text" id="codInformado">
+        </div>
     </div>
 
-    <div class="linha">
-        <label>Informe o Código do Produto:</label>
-        <input type="text" id="codInformado">
+    <!-- BLOCO 2 -->
+    <div class="bloco">
+        <div class="bloco-titulo">Configuração Produto</div>
+
+        <div class="linha">
+            <label>Início Cod Produto:</label>
+            <input type="number" id="iniProd">
+        </div>
+
+        <div class="linha">
+            <label>Tamanho Cod Produto:</label>
+            <input type="number" id="tamProd">
+        </div>
     </div>
 
-    <div class="linha">
-        <label>Início Cod Produto:</label>
-        <input type="number" id="iniProd">
-    </div>
+    <!-- BLOCO 3 -->
+    <div class="bloco">
+        <div class="bloco-titulo">Configuração Preço/Peso</div>
 
-    <div class="linha">
-        <label>Tamanho Cod Produto:</label>
-        <input type="number" id="tamProd">
-    </div>
+        <div class="linha">
+            <label>Início Preço/Peso Produto:</label>
+            <input type="number" id="iniPreco">
+        </div>
 
-    <div class="linha">
-        <label>Início Preço/Peso Produto:</label>
-        <input type="number" id="iniPreco">
-    </div>
-
-    <div class="linha">
-        <label>Tamanho Preço/Peso Produto:</label>
-        <input type="number" id="tamPreco">
+        <div class="linha">
+            <label>Tamanho Preço/Peso Produto:</label>
+            <input type="number" id="tamPreco">
+        </div>
     </div>
 
     <div class="botoes">
@@ -192,7 +224,6 @@ function processar() {
 
     let status = document.getElementById("statusMsg");
 
-    // limpar estilos anteriores
     codInformado.classList.remove("erro-input", "ok-input");
     status.innerText = "";
     status.className = "status";
@@ -237,9 +268,9 @@ function processar() {
     document.getElementById("resPreco").innerText = precoFormatado;
     document.getElementById("resCodInf").innerText = codInformado.value;
 }
+
 function limparCampos() {
 
-    // limpar inputs
     document.getElementById("codigo").value = "";
     document.getElementById("codInformado").value = "";
     document.getElementById("iniProd").value = "";
@@ -247,21 +278,17 @@ function limparCampos() {
     document.getElementById("iniPreco").value = "";
     document.getElementById("tamPreco").value = "";
 
-    // limpar resultados
     document.getElementById("resProd").innerText = "-";
     document.getElementById("resPreco").innerText = "-";
     document.getElementById("resCodInf").innerText = "-";
 
-    // limpar status
     let status = document.getElementById("statusMsg");
     status.innerText = "";
     status.className = "status";
 
-    // remover estilos de erro/sucesso
     let codInformado = document.getElementById("codInformado");
     codInformado.classList.remove("erro-input", "ok-input");
 
-    // focar no primeiro campo (melhor UX)
     document.getElementById("codigo").focus();
 }
 </script>
