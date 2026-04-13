@@ -58,6 +58,15 @@ body {
     padding: 8px;
     border-radius: 6px;
     border: none;
+    outline: none;
+}
+
+.erro-input {
+    border: 2px solid #ef4444 !important;
+}
+
+.ok-input {
+    border: 2px solid #22c55e !important;
 }
 
 button {
@@ -85,6 +94,19 @@ button:hover {
 .label {
     font-weight: bold;
 }
+
+.status {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.status.ok {
+    color: #22c55e;
+}
+
+.status.erro {
+    color: #ef4444;
+}
 </style>
 </head>
 
@@ -93,7 +115,7 @@ button:hover {
 <div class="card">
     <div class="header">
         <h2>Leitor de Etiqueta</h2>
-        <span class="versao">v3</span>
+        <span class="versao">v4</span>
     </div>
 
     <div class="linha">
@@ -132,6 +154,7 @@ button:hover {
         <div><span class="label">Código Produto da etiqueta:</span> <span id="resProd">-</span></div>
         <div><span class="label">Preço/Peso Produto da etiqueta:</span> <span id="resPreco">-</span></div>
         <div><span class="label">Código Item informado:</span> <span id="resCodInf">-</span></div>
+        <div id="statusMsg" class="status"></div>
     </div>
 </div>
 
@@ -139,7 +162,7 @@ button:hover {
 function processar() {
 
     let codigo = document.getElementById("codigo").value;
-    let codInformado = document.getElementById("codInformado").value;
+    let codInformado = document.getElementById("codInformado");
 
     let iniProd = parseInt(document.getElementById("iniProd").value);
     let tamProd = parseInt(document.getElementById("tamProd").value);
@@ -147,19 +170,28 @@ function processar() {
     let iniPreco = parseInt(document.getElementById("iniPreco").value);
     let tamPreco = parseInt(document.getElementById("tamPreco").value);
 
+    let status = document.getElementById("statusMsg");
+
+    // limpar estilos anteriores
+    codInformado.classList.remove("erro-input", "ok-input");
+    status.innerText = "";
+    status.className = "status";
+
     if(!codigo || isNaN(iniProd) || isNaN(tamProd) || isNaN(iniPreco) || isNaN(tamPreco)){
-        alert("Preencha todos os campos corretamente.");
+        status.innerText = "Preencha todos os campos corretamente.";
+        status.classList.add("erro");
         return;
     }
 
-    // 🔴 VALIDAÇÕES DE TAMANHO
     if ((iniProd - 1 + tamProd) > codigo.length) {
-        alert("TAMANHO INVALIDO - EXCEDE POSIÇÃO INICIO (CÓDIGO PRODUTO)");
+        status.innerText = "TAMANHO INVALIDO - EXCEDE POSIÇÃO INICIO (CÓDIGO PRODUTO)";
+        status.classList.add("erro");
         return;
     }
 
     if ((iniPreco - 1 + tamPreco) > codigo.length) {
-        alert("TAMANHO INVALIDO - EXCEDE POSIÇÃO INICIO (PREÇO)");
+        status.innerText = "TAMANHO INVALIDO - EXCEDE POSIÇÃO INICIO (PREÇO)";
+        status.classList.add("erro");
         return;
     }
 
@@ -168,18 +200,22 @@ function processar() {
 
     let precoFormatado = precoBruto.slice(0, -2) + "," + precoBruto.slice(-2);
 
-    // 🔵 REMOVER ZEROS À ESQUERDA PARA COMPARAÇÃO
     let codProdutoNormalizado = codProduto.replace(/^0+/, '');
-    let codInformadoNormalizado = codInformado.replace(/^0+/, '');
+    let codInformadoNormalizado = codInformado.value.replace(/^0+/, '');
 
-    // 🔴 VALIDAÇÃO DE DIFERENÇA
     if (codProdutoNormalizado !== codInformadoNormalizado) {
-        alert("Codigo Prod da etiqueta diferente do código informado");
+        status.innerText = "Codigo Prod da etiqueta diferente do código informado";
+        status.classList.add("erro");
+        codInformado.classList.add("erro-input");
+    } else {
+        status.innerText = "OK - Código confere";
+        status.classList.add("ok");
+        codInformado.classList.add("ok-input");
     }
 
     document.getElementById("resProd").innerText = codProduto;
     document.getElementById("resPreco").innerText = precoFormatado;
-    document.getElementById("resCodInf").innerText = codInformado;
+    document.getElementById("resCodInf").innerText = codInformado.value;
 }
 </script>
 
