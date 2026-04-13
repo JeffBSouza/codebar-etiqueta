@@ -147,6 +147,7 @@ button:hover {
 <body>
 
 <div class="card">
+    <!-- ✅ HEADER RESTAURADO -->
     <div class="header">
         <h2>Validador Codigo Barras Etiqueta</h2>
         <span class="versao">v4</span>
@@ -211,8 +212,8 @@ button:hover {
 </div>
 
 <script>
+// (mantive seu JS exatamente igual)
 function processar() {
-
     let codigo = document.getElementById("codigo").value;
     let codInformado = document.getElementById("codInformado");
 
@@ -270,7 +271,6 @@ function processar() {
 }
 
 function limparCampos() {
-
     document.getElementById("codigo").value = "";
     document.getElementById("codInformado").value = "";
     document.getElementById("iniProd").value = "";
