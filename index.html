@@ -93,7 +93,7 @@ button:hover {
 <div class="card">
     <div class="header">
         <h2>Leitor de Etiqueta</h2>
-        <span class="versao">v2</span>
+        <span class="versao">v3</span>
     </div>
 
     <div class="linha">
@@ -152,7 +152,7 @@ function processar() {
         return;
     }
 
-    // 🔴 VALIDAÇÕES
+    // 🔴 VALIDAÇÕES DE TAMANHO
     if ((iniProd - 1 + tamProd) > codigo.length) {
         alert("TAMANHO INVALIDO - EXCEDE POSIÇÃO INICIO (CÓDIGO PRODUTO)");
         return;
@@ -167,6 +167,15 @@ function processar() {
     let precoBruto = codigo.substr(iniPreco - 1, tamPreco);
 
     let precoFormatado = precoBruto.slice(0, -2) + "," + precoBruto.slice(-2);
+
+    // 🔵 REMOVER ZEROS À ESQUERDA PARA COMPARAÇÃO
+    let codProdutoNormalizado = codProduto.replace(/^0+/, '');
+    let codInformadoNormalizado = codInformado.replace(/^0+/, '');
+
+    // 🔴 VALIDAÇÃO DE DIFERENÇA
+    if (codProdutoNormalizado !== codInformadoNormalizado) {
+        alert("Codigo Prod da etiqueta diferente do código informado");
+    }
 
     document.getElementById("resProd").innerText = codProduto;
     document.getElementById("resPreco").innerText = precoFormatado;
