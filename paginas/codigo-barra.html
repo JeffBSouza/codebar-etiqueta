@@ -25,22 +25,21 @@
             <div class="form-side">
                 <div class="bloco">
                     <div class="bloco-titulo">Dados da Etiqueta</div>
-                    <div class="linha"><label>Código Barras Etiqueta:</label><input type="text" id="codigo"></div>
-                    <div class="linha"><label>Informe o Código do Produto:</label><input type="text" id="codInformado"></div>
+                    <div class="linha"><label>Código Barras Etiqueta:</label><input type="text" id="codigo" class="barcode-input"></div>
+                    <div class="linha"><label>Informe o Código do Produto:</label><input type="text" id="codInformado" class="barcode-input"></div>
                 </div>
                 <div class="bloco">
                     <div class="bloco-titulo">Configuração Produto - PDV >> Parametros</div>
-                    <div class="linha"><label>Início Cod Produto:</label><input type="number" id="iniProd" value="2"></div>
-                    <div class="linha"><label>Tamanho Cod Produto:</label><input type="number" id="tamProd" value="5"></div>
+                    <div class="linha"><label>Início Cod Produto:</label><input type="number" id="iniProd" value="2" class="barcode-input"></div>
+                    <div class="linha"><label>Tamanho Cod Produto:</label><input type="number" id="tamProd" value="5" class="barcode-input"></div>
                 </div>
                 <div class="bloco">
                     <div class="bloco-titulo">Configuração Preço/Peso - PDV >> Parametros</div>
-                    <div class="linha"><label>Início Preço/Peso Produto:</label><input type="number" id="iniPreco" value="8"></div>
-                    <div class="linha"><label>Tamanho Preço/Peso Produto:</label><input type="number" id="tamPreco" value="5"></div>
+                    <div class="linha"><label>Início Preço/Peso Produto:</label><input type="number" id="iniPreco" value="8" class="barcode-input"></div>
+                    <div class="linha"><label>Tamanho Preço/Peso Produto:</label><input type="number" id="tamPreco" value="5" class="barcode-input"></div>
                 </div>
                 <div class="botoes">
-                    <button class="btn-primary" onclick="processar()">Processar</button>
-                    <button class="btn-secondary limpar" onclick="limparCampos()">Limpar</button>
+                    <button class="btn-secondary limpar" style="width: 100%;" onclick="limparCampos()">Limpar</button>
                 </div>
             </div>
             <div class="result-side">

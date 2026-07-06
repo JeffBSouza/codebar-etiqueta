@@ -25,7 +25,6 @@ body { background-color: var(--bg-main); color: var(--text-main); padding-bottom
 .linha input { width: 100%; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; }
 .botoes { display: flex; gap: 0.5rem; }
 
-/* Fixed Layout Cards */
 .card-calculo { background: white; border: 1px solid var(--border-color); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem; transition: all 0.25s; }
 .card-calculo.faded { opacity: var(--faded-opacity); filter: grayscale(1); pointer-events: none; }
 
@@ -54,10 +53,12 @@ body { background-color: var(--bg-main); color: var(--text-main); padding-bottom
 
 .border-top-dash { border-top: 1px dashed var(--border-color); padding-top: 0.5rem; margin-top: 0.25rem; }
 .exp-math-real { font-family: monospace; font-weight: bold; color: #0f172a; }
-.res-value-wrapper { display: flex; justify-content: space-between; background: #f1f5f9; padding: 0.5rem; border-radius: 4px; }
-.res-badge { font-family: monospace; font-weight: bold; }
+.res-value-wrapper { display: flex; justify-content: space-between; background: #f1f5f9; padding: 0.5rem; border-radius: 4px; margin-bottom: 0.5rem; align-items: center; }
+.res-badge { font-family: monospace; font-weight: bold; font-size: 1.1rem; color: #1e293b; }
 .btn-copy-mini { padding: 0.25rem 0.5rem; font-size: 0.75rem; background: white; border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer; }
-.status { margin-top: 0.5rem; padding: 0.5rem; border-radius: 4px; font-size: 0.9rem; }
-.status.sucesso { background: var(--success-light); color: var(--success); }
-.status.erro { background: var(--danger-light); color: var(--danger); }
+.status { margin-top: 0.75rem; padding: 0.65rem; border-radius: 4px; font-size: 0.95rem; font-weight: 500; text-align: center; }
+.status.sucesso { background: var(--success-light); color: var(--success); border: 1px solid #bbf7d0; }
+.status.erro { background: var(--danger-light); color: var(--danger); border: 1px solid #fecaca; }
+.result-item { margin-bottom: 0.75rem; }
+.result-item .label { display: block; font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.25rem; font-weight: 500; }
 .footer { text-align: center; margin-top: 2rem; color: var(--text-light); font-size: 0.8rem; }
