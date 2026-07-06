@@ -1,297 +1,129 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Leitor de Código de Barras</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: linear-gradient(135deg, #0f172a, #1e293b);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: white;
-}
-
-.card {
-    background: #111827;
-    padding: 30px;
-    border-radius: 12px;
-    width: 650px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.header h2 {
-    margin: 0;
-}
-
-.versao {
-    font-size: 12px;
-    opacity: 0.7;
-}
-
-.bloco {
-    background: #0f172a;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    border: 1px solid rgba(255,255,255,0.05);
-}
-
-.bloco-titulo {
-    font-size: 13px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #93c5fd;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.linha {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    gap: 10px;
-}
-
-.linha label {
-    width: 260px;
-    font-size: 14px;
-}
-
-.linha input {
-    flex: 1;
-    padding: 8px;
-    border-radius: 6px;
-    border: none;
-    outline: none;
-}
-
-.erro-input {
-    border: 2px solid #ef4444 !important;
-}
-
-.ok-input {
-    border: 2px solid #22c55e !important;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #1d4ed8;
-}
-
-.result {
-    margin-top: 20px;
-    background: #1f2937;
-    padding: 15px;
-    border-radius: 8px;
-}
-
-.label {
-    font-weight: bold;
-}
-
-.status {
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-.status.ok {
-    color: #22c55e;
-}
-
-.status.erro {
-    color: #ef4444;
-}
-
-.botoes {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.botoes button {
-    flex: 1;
-}
-
-.limpar {
-    background: #6b7280;
-}
-
-.limpar:hover {
-    background: #4b5563;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codebar-etiqueta</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<div class="card">
-    <!-- ✅ HEADER RESTAURADO -->
-    <div class="header">
-        <h2>Validador Codigo Barras Etiqueta</h2>
-        <span class="versao">v4</span>
-    </div>
-
-    <!-- BLOCO 1 -->
-    <div class="bloco">
-        <div class="bloco-titulo">Dados da Etiqueta</div>
-
-        <div class="linha">
-            <label>Código Barras Etiqueta:</label>
-            <input type="text" id="codigo">
+    <div class="container">
+        <h1>codebar-etiqueta</h1>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab(event, 'tab-original')">Dados da Etiqueta</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-calculo')">Calcula Peso/Preço Item KG</button>
         </div>
 
-        <div class="linha">
-            <label>Informe o Código do Produto:</label>
-            <input type="text" id="codInformado">
+        <div id="tab-original" class="tab-content active">
+            <div class="bloco">
+                <div class="bloco-titulo">Dados da Etiqueta</div>
+                <div class="linha">
+                    <label>Código Barras Etiqueta:</label>
+                    <input type="text" id="codigo">
+                </div>
+                <div class="linha">
+                    <label>Informe o Código do Produto:</label>
+                    <input type="text" id="codInformado">
+                </div>
+            </div>
+
+            <div class="bloco">
+                <div class="bloco-titulo">Configuração Produto - PDV&gt;&gt;Parametros</div>
+                <div class="linha">
+                    <label>Início Cod Produto:</label>
+                    <input type="number" id="iniProd">
+                </div>
+                <div class="linha">
+                    <label>Tamanho Cod Produto:</label>
+                    <input type="number" id="tamProd">
+                </div>
+            </div>
+
+            <div class="bloco">
+                <div class="bloco-titulo">Configuração Preço/Peso - PDV&gt;&gt;Parametros</div>
+                <div class="linha">
+                    <label>Início Preço/Peso Produto:</label>
+                    <input type="number" id="iniPreco">
+                </div>
+                <div class="linha">
+                    <label>Tamanho Preço/Peso Produto:</label>
+                    <input type="number" id="tamPreco">
+                </div>
+            </div>
+
+            <div class="botoes">
+                <button onclick="processar()">Processar</button>
+                <button class="limpar" onclick="limparCampos()">Limpar</button>
+            </div>
+
+            <div class="result">
+                <div><span class="label">Código Produto da etiqueta:</span> <span id="resProd">-</span></div>
+                <div><span class="label">Preço/Peso Produto da etiqueta:</span> <span id="resPreco">-</span></div>
+                <div><span class="label">Código Item informado:</span> <span id="resCodInf">-</span></div>
+                <div id="statusMsg" class="status"></div>
+            </div>
+        </div>
+
+        <div id="tab-calculo" class="tab-content">
+            <div class="bloco">
+                <div class="bloco-titulo">Calcula Peso/Preço item KG</div>
+                
+                <div class="linha">
+                    <label>Peso Produto (kg):</label>
+                    <input type="number" step="0.001" id="pesoProd" placeholder="Ex: 0.500">
+                </div>
+                <div class="linha">
+                    <label>Preço do KG: R$</label>
+                    <input type="number" step="0.01" id="precoKg" placeholder="Ex: 49.90">
+                </div>
+                <div class="linha">
+                    <label>Preço Final: R$</label>
+                    <input type="number" step="0.01" id="precoFinalInput" placeholder="Ex: 24.95">
+                </div>
+                <div class="linha">
+                    <label>Tolerância Geral (%):<br><small>(PDV&gt;&gt;Parametros&gt;&gt;Selfcheckout)</small></label>
+                    <input type="number" step="0.1" id="tolGeral" placeholder="Ex: 5">
+                </div>
+                <div class="linha">
+                    <label>Tolerância Item (%):<br><small>(CadastroProduto&gt;&gt;DadosComplementares)</small></label>
+                    <input type="number" step="0.1" id="tolItem" placeholder="Ex: 3">
+                </div>
+            </div>
+
+            <div class="calculos-container">
+                <div id="bloco-gera-preco" class="bloco-calculo cloudy">
+                    <div class="calculo-titulo">CALCULO GERA PREÇO</div>
+                    <p class="calculo-sub">Gera o preço real conforme peso final e preço do kg</p>
+                    <div class="calculo-formula">Peso * Preço do KG = Preço Final</div>
+                    <div class="resultado-dinamico" id="resGeraPreco"></div>
+                </div>
+
+                <div id="bloco-gera-peso" class="bloco-calculo cloudy">
+                    <div class="calculo-titulo">CALCULO GERA PESO</div>
+                    <p class="calculo-sub">Gera o peso real conforme preço final e preço kg</p>
+                    <div class="calculo-formula">Preço Final / Preço KG = Peso</div>
+                    <div class="resultado-dinamico" id="resGeraPeso"></div>
+                </div>
+
+                <div id="bloco-tol-geral" class="bloco-calculo cloudy">
+                    <div class="calculo-titulo">TOLERANCIA PRODUTO</div>
+                    <p class="calculo-sub">Gera o peso aceito conforme o parâmetro tolerância</p>
+                    <div class="calculo-formula">Tolerância Geral + Peso Produto = Peso aceito com tolerância geral</div>
+                    <div class="resultado-dinamico" id="resTolGeral"></div>
+                </div>
+
+                <div id="bloco-tol-item" class="bloco-calculo cloudy">
+                    <div class="calculo-titulo">TOLERANCIA PRODUTO</div>
+                    <p class="calculo-sub">Gera o peso aceito conforme o parâmetro tolerância</p>
+                    <div class="calculo-alerta">⚠️ Atenção, esta tolerância passa a ser usada no lugar do valor ativo em PDV&gt;&gt;Parametros&gt;&gt;Selfcheckout</div>
+                    <div class="calculo-formula">Tolerância Item + Peso Produto = Peso aceito com tolerância Item</div>
+                    <div class="resultado-dinamico" id="resTolItem"></div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- BLOCO 2 -->
-    <div class="bloco">
-        <div class="bloco-titulo">Configuração Produto - PDV>>Parametros</div>
-
-        <div class="linha">
-            <label>Início Cod Produto:</label>
-            <input type="number" id="iniProd">
-        </div>
-
-        <div class="linha">
-            <label>Tamanho Cod Produto:</label>
-            <input type="number" id="tamProd">
-        </div>
-    </div>
-
-    <!-- BLOCO 3 -->
-    <div class="bloco">
-        <div class="bloco-titulo">Configuração Preço/Peso - PDV>>Parametros</div>
-
-        <div class="linha">
-            <label>Início Preço/Peso Produto:</label>
-            <input type="number" id="iniPreco">
-        </div>
-
-        <div class="linha">
-            <label>Tamanho Preço/Peso Produto:</label>
-            <input type="number" id="tamPreco">
-        </div>
-    </div>
-
-    <div class="botoes">
-        <button onclick="processar()">Processar</button>
-        <button class="limpar" onclick="limparCampos()">Limpar</button>
-    </div>
-
-    <div class="result">
-        <div><span class="label">Código Produto da etiqueta:</span> <span id="resProd">-</span></div>
-        <div><span class="label">Preço/Peso Produto da etiqueta:</span> <span id="resPreco">-</span></div>
-        <div><span class="label">Código Item informado:</span> <span id="resCodInf">-</span></div>
-        <div id="statusMsg" class="status"></div>
-    </div>
-</div>
-
-<script>
-// (mantive seu JS exatamente igual)
-function processar() {
-    let codigo = document.getElementById("codigo").value;
-    let codInformado = document.getElementById("codInformado");
-
-    let iniProd = parseInt(document.getElementById("iniProd").value);
-    let tamProd = parseInt(document.getElementById("tamProd").value);
-
-    let iniPreco = parseInt(document.getElementById("iniPreco").value);
-    let tamPreco = parseInt(document.getElementById("tamPreco").value);
-
-    let status = document.getElementById("statusMsg");
-
-    codInformado.classList.remove("erro-input", "ok-input");
-    status.innerText = "";
-    status.className = "status";
-
-    if(!codigo || isNaN(iniProd) || isNaN(tamProd) || isNaN(iniPreco) || isNaN(tamPreco)){
-        status.innerText = "Preencha todos os campos corretamente.";
-        status.classList.add("erro");
-        return;
-    }
-
-    if ((iniProd - 1 + tamProd) > codigo.length) {
-        status.innerText = "TAMANHO INVALIDO - EXCEDE POSIÇÃO INICIO (CÓDIGO PRODUTO)";
-        status.classList.add("erro");
-        return;
-    }
-
-    if ((iniPreco - 1 + tamPreco) > codigo.length) {
-        status.innerText = "TAMANHO INVALIDO - EXCEDE POSIÇÃO INICIO (PREÇO)";
-        status.classList.add("erro");
-        return;
-    }
-
-    let codProduto = codigo.substr(iniProd - 1, tamProd);
-    let precoBruto = codigo.substr(iniPreco - 1, tamPreco);
-
-    let precoFormatado = precoBruto.slice(0, -2) + "," + precoBruto.slice(-2);
-
-    let codProdutoNormalizado = codProduto.replace(/^0+/, '');
-    let codInformadoNormalizado = codInformado.value.replace(/^0+/, '');
-
-    if (codProdutoNormalizado !== codInformadoNormalizado) {
-        status.innerText = "Codigo Prod da etiqueta diferente do código informado";
-        status.classList.add("erro");
-        codInformado.classList.add("erro-input");
-    } else {
-        status.innerText = "OK - Código confere";
-        status.classList.add("ok");
-        codInformado.classList.add("ok-input");
-    }
-
-    document.getElementById("resProd").innerText = codProduto;
-    document.getElementById("resPreco").innerText = precoFormatado;
-    document.getElementById("resCodInf").innerText = codInformado.value;
-}
-
-function limparCampos() {
-    document.getElementById("codigo").value = "";
-    document.getElementById("codInformado").value = "";
-    document.getElementById("iniProd").value = "";
-    document.getElementById("tamProd").value = "";
-    document.getElementById("iniPreco").value = "";
-    document.getElementById("tamPreco").value = "";
-
-    document.getElementById("resProd").innerText = "-";
-    document.getElementById("resPreco").innerText = "-";
-    document.getElementById("resCodInf").innerText = "-";
-
-    let status = document.getElementById("statusMsg");
-    status.innerText = "";
-    status.className = "status";
-
-    let codInformado = document.getElementById("codInformado");
-    codInformado.classList.remove("erro-input", "ok-input");
-
-    document.getElementById("codigo").focus();
-}
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
