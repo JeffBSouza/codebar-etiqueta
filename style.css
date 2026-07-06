@@ -1,182 +1,260 @@
+/* Configurações Gerais e Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #0d1117;
+    background-color: #0d1117; /* Fundo padrão GitHub */
     color: #c9d1d9;
-    margin: 0;
-    padding: 20px;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: center;
 }
+
 .container {
-    max-width: 600px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 650px;
     background: #161b22;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
     border: 1px solid #30363d;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+
 h1 {
-    font-size: 20px;
-    margin-top: 0;
-    border-bottom: 1px solid #30363d;
-    padding-bottom: 10px;
+    font-size: 22px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
     color: #f0883e;
+    border-bottom: 1px solid #30363d;
 }
-/* Sistema de Abas */
+
+/* Sistema de Abas Navegáveis */
 .tabs {
     display: flex;
     border-bottom: 1px solid #30363d;
-    margin-bottom: 20px;
-    gap: 10px;
+    margin-bottom: 25px;
+    gap: 8px;
 }
+
 .tab-btn {
     background: none;
     border: none;
     color: #8b949e;
-    padding: 10px 15px;
+    padding: 10px 20px;
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
     border-bottom: 2px solid transparent;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
+
 .tab-btn:hover {
     color: #c9d1d9;
 }
+
 .tab-btn.active {
     color: #f0883e;
     border-bottom-color: #f0883e;
 }
+
 .tab-content {
     display: none;
 }
+
 .tab-content.active {
     display: block;
 }
-/* Estilos dos Blocos */
+
+/* Blocos de Entrada de Dados */
 .bloco {
     background: #21262d;
     border: 1px solid #30363d;
     border-radius: 6px;
-    padding: 15px;
-    margin-bottom: 15px;
+    padding: 18px;
+    margin-bottom: 20px;
 }
+
 .bloco-titulo {
     font-weight: bold;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     color: #f0883e;
     font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
+
 .linha {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
+
+.linha:last-child {
+    margin-bottom: 0;
+}
+
 .linha label {
     font-size: 13px;
-    max-width: 55%;
-    line-height: 1.3;
+    color: #c9d1d9;
+    max-width: 60%;
+    line-height: 1.4;
 }
+
 .linha label small {
     color: #8b949e;
     font-size: 11px;
+    display: block;
+    margin-top: 2px;
 }
+
 .linha input {
     background: #0d1117;
     border: 1px solid #30363d;
     color: #c9d1d9;
-    padding: 6px 10px;
-    border-radius: 4px;
-    width: 40%;
-    box-sizing: border-box;
+    padding: 8px 12px;
+    border-radius: 6px;
+    width: 35%;
+    font-size: 13px;
+    text-align: right;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+
 .linha input:focus {
     border-color: #f0883e;
+    box-shadow: 0 0 0 2px rgba(240, 136, 62, 0.2);
     outline: none;
 }
-/* Botões Originais */
+
+/* Área de Botões (Aba Original) */
 .botoes {
     display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 12px;
+    margin-bottom: 20px;
 }
+
 button {
     background: #238636;
-    color: white;
+    color: #ffffff;
     border: 1px solid rgba(240,246,252,0.1);
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: 6px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 13px;
+    transition: background 0.2s ease;
 }
-button:hover { background: #2ea44f; }
+
+button:hover { 
+    background: #2ea44f; 
+}
+
 button.limpar {
     background: #21262d;
     color: #c9d1d9;
     border-color: #30363d;
 }
-button.limpar:hover { background: #30363d; }
+
+button.limpar:hover { 
+    background: #30363d; 
+}
+
+/* Resultados da Aba Original */
 .result {
     background: #161b22;
     border: 1px solid #30363d;
-    padding: 12px;
+    padding: 15px;
     border-radius: 6px;
     font-size: 13px;
 }
-.result div { margin-bottom: 6px; }
-.label { color: #8b949e; }
 
-/* Estilos dos Novos Blocos de Cálculo */
+.result div { 
+    margin-bottom: 8px; 
+    display: flex;
+    justify-content: space-between;
+}
+
+.result div:last-child {
+    margin-bottom: 0;
+}
+
+.label { 
+    color: #8b949e; 
+}
+
+/* Novos Containers de Cálculo Dinâmico */
+.calculos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .bloco-calculo {
     background: #21262d;
     border: 1px solid #30363d;
     border-radius: 6px;
-    padding: 15px;
-    margin-bottom: 15px;
-    transition: all 0.3s ease;
+    padding: 16px;
+    transition: all 0.25s ease;
 }
+
 .calculo-titulo {
     font-weight: bold;
     font-size: 13px;
     color: #58a6ff;
 }
+
 .calculo-sub {
     font-size: 11px;
     color: #8b949e;
-    margin: 4px 0 8px 0;
+    margin: 4px 0 10px 0;
 }
+
 .calculo-formula {
-    font-family: monospace;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     background: #0d1117;
-    padding: 6px 10px;
-    border-radius: 4px;
+    padding: 8px 12px;
+    border-radius: 6px;
     font-size: 12px;
-    margin-bottom: 10px;
-    color: #c9d1d9;
+    margin-bottom: 12px;
+    color: #8b949e;
     border: 1px solid #30363d;
 }
+
 .calculo-alerta {
     font-size: 11px;
     color: #d29922;
     background: rgba(210, 153, 34, 0.1);
-    padding: 6px 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    border: 1px solid rgba(210, 153, 34, 0.2);
-}
-.resultado-dinamico {
-    font-size: 14px;
-    font-weight: bold;
-    color: #58a6ff;
-    min-height: 20px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(210, 153, 34, 0.15);
+    line-height: 1.4;
 }
 
-/* Efeito Nublado / Desativado */
-.cloudy {
-    opacity: 0.3;
-    filter: grayscale(100%);
-    background: rgba(22, 27, 34, 0.5);
-    pointer-events: none;
+.resultado-dinamico {
+    font-size: 15px;
+    font-weight: 600;
+    color: #58a6ff;
+    padding-top: 4px;
 }
+
+/* O Ajuste do Efeito Nublado (Desativado) */
+.cloudy {
+    opacity: 0.25;
+    filter: blur(0.4px) grayscale(100%);
+    background: rgba(22, 27, 34, 0.4);
+    border-color: rgba(48, 54, 61, 0.5);
+    pointer-events: none; /* Impede interações se houver links/botões */
+}
+
+.cloudy .calculo-titulo {
+    color: #8b949e;
+}
+
 .cloudy .resultado-dinamico {
-    color: transparent;
+    visibility: hidden; /* Oculta o resultado para deixar o campo vazio como solicitado */
 }
