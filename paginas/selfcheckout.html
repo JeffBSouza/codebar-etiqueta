@@ -40,52 +40,64 @@
             </div>
             <div class="result-side">
                 <div class="card-calculo faded" id="card-gerar-preco">
-                    <div class="card-calc-header"><span class="badge-title">GERA PREÇO</span><span class="sub-formula">Peso * Preço do KG = Preço Final</span></div>
+                    <div class="card-calc-header">
+                        <span class="badge-title">GERA PREÇO</span>
+                        <span class="sub-formula">Peso * Preço do KG = Preço Final</span>
+                    </div>
                     <div class="card-calc-body">
-                        <div class="expression-values"><span class="exp-label">Valores:</span><span class="exp-math-real" id="formula-preco">—</span></div>
+                        <div class="expression-values"><span class="exp-label">Valores:</span> <span class="exp-math-real" id="formula-preco">—</span></div>
                         <div class="result-display">
-                            <div class="res-box"><span class="res-title">Preço Final Calculado</span><span class="res-value" id="res-val-preco">—</span></div>
+                            <div class="res-box"><span class="res-title">Preço Final Calculado -</span> <span class="res-value" id="res-val-preco">—</span></div>
                             <button class="btn-copiar" onclick="copiarTextoValue('res-val-preco')">📋 Copiar</button>
                         </div>
                     </div>
                 </div>
                 <div class="card-calculo faded" id="card-gerar-peso">
-                    <div class="card-calc-header"><span class="badge-title">GERA PESO</span><span class="sub-formula">Preço Final / Preço KG = Peso</span></div>
+                    <div class="card-calc-header">
+                        <span class="badge-title">GERA PESO</span>
+                        <span class="sub-formula">Preço Final / Preço KG = Peso</span>
+                    </div>
                     <div class="card-calc-body">
-                        <div class="expression-values"><span class="exp-label">Valores:</span><span class="exp-math-real" id="formula-peso">—</span></div>
+                        <div class="expression-values"><span class="exp-label">Valores:</span> <span class="exp-math-real" id="formula-peso">—</span></div>
                         <div class="result-display">
-                            <div class="res-box"><span class="res-title">Peso Estimado Calculado</span><span class="res-value" id="res-val-peso">—</span></div>
+                            <div class="res-box"><span class="res-title">Peso Estimado Calculado -</span> <span class="res-value" id="res-val-peso">—</span></div>
                             <button class="btn-copiar" onclick="copiarTextoValue('res-val-peso')">📋 Copiar</button>
                         </div>
                     </div>
                 </div>
                 <div class="card-calculo faded" id="card-tol-geral">
-                    <div class="card-calc-header"><span class="badge-title">TOLERÂNCIA GERAL</span><span class="sub-formula">Tolerância Geral + Peso Produto = Peso aceito</span></div>
+                    <div class="card-calc-header">
+                        <span class="badge-title">TOLERÂNCIA GERAL</span>
+                        <span class="sub-formula">Tolerância Geral + Peso Produto = Peso aceito</span>
+                    </div>
                     <div class="card-calc-body">
-                        <div class="expression-values"><span class="exp-label">Valores:</span><span class="exp-math-real" id="formula-tol-geral">—</span></div>
+                        <div class="expression-values"><span class="exp-label">Valores:</span> <span class="exp-math-real" id="formula-tol-geral">—</span></div>
                         <div class="multi-results">
                             <div class="result-display">
-                                <div class="res-box"><span class="res-title">Peso Aceito</span><span class="res-value val-medium" id="res-aceito-geral">—</span></div>
+                                <div class="res-box"><span class="res-title">Peso Aceito -</span> <span class="res-value val-medium" id="res-aceito-geral">—</span></div>
                                 <button class="btn-copiar" onclick="copiarTextoValue('res-aceito-geral')">📋 Copiar</button>
                             </div>
                             <div class="result-display border-top-dash">
-                                <div class="res-box"><span class="res-title">Peso Tolerância Margem</span><span class="res-value val-small" id="res-tol-geral">—</span></div>
+                                <div class="res-box"><span class="res-title">Peso Tolerância Margem -</span> <span class="res-value val-small" id="res-tol-geral">—</span></div>
                                 <button class="btn-copiar" onclick="copiarTextoValue('res-tol-geral')">📋 Copiar</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-calculo faded" id="card-tol-item">
-                    <div class="card-calc-header highlight-orange"><span class="badge-title">TOLERÂNCIA ITEM</span><span class="sub-formula">Tolerância Item + Peso Produto = Peso aceito com tolerância Item</span></div>
+                    <div class="card-calc-header highlight-orange">
+                        <span class="badge-title">TOLERÂNCIA ITEM</span>
+                        <span class="sub-formula">Tolerância Item + Peso Produto = Peso aceito com tolerância Item</span>
+                    </div>
                     <div class="card-calc-body">
-                        <div class="expression-values"><span class="exp-label">Valores:</span><span class="exp-math-real" id="formula-tol-item">—</span></div>
+                        <div class="expression-values"><span class="exp-label">Valores:</span> <span class="exp-math-real" id="formula-tol-item">—</span></div>
                         <div class="multi-results">
                             <div class="result-display">
-                                <div class="res-box"><span class="res-title">Peso Aceito Item</span><span class="res-value val-medium" id="res-aceito-item">—</span></div>
+                                <div class="res-box"><span class="res-title">Peso Aceito Item -</span> <span class="res-value val-medium" id="res-aceito-item">—</span></div>
                                 <button class="btn-copiar" onclick="copiarTextoValue('res-aceito-item')">📋 Copiar</button>
                             </div>
                             <div class="result-display border-top-dash">
-                                <div class="res-box"><span class="res-title">Peso Tolerância Item Margem</span><span class="res-value val-small" id="res-tol-item">—</span></div>
+                                <div class="res-box"><span class="res-title">Peso Tolerância Item Margem -</span> <span class="res-value val-small" id="res-tol-item">—</span></div>
                                 <button class="btn-copiar" onclick="copiarTextoValue('res-tol-item')">📋 Copiar</button>
                             </div>
                         </div>

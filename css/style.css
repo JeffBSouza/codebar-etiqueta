@@ -24,19 +24,36 @@ body { background-color: var(--bg-main); color: var(--text-main); padding-bottom
 .linha label { display: block; font-size: 0.85rem; margin-bottom: 0.25rem; font-weight: 500; }
 .linha input { width: 100%; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; }
 .botoes { display: flex; gap: 0.5rem; }
-.card-calculo { background: white; border: 1px solid var(--border-color); border-radius: 6px; padding: 1rem; margin-bottom: 1rem; transition: all 0.25s; }
+
+/* Fixed Layout Cards */
+.card-calculo { background: white; border: 1px solid var(--border-color); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem; transition: all 0.25s; }
 .card-calculo.faded { opacity: var(--faded-opacity); filter: grayscale(1); pointer-events: none; }
-.result-display { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 0.5rem; border-radius: 4px; margin-top: 0.5rem; border: 1px solid #e2e8f0; }
-.res-value { font-size: 1.3rem; font-weight: bold; color: #4a5568; }
+
+.card-calc-header { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid #f1f5f9; }
+.badge-title { font-weight: bold; font-size: 1.05rem; color: #1e293b; display: block; }
+.sub-formula { font-size: 0.85rem; color: var(--text-light); font-style: italic; display: block; }
+
+.expression-values { margin-bottom: 0.75rem; font-size: 0.9rem; color: var(--text-main); }
+.exp-label { font-weight: 600; margin-right: 0.35rem; }
+
+.result-display { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 0.65rem; border-radius: 4px; margin-top: 0.5rem; border: 1px solid #e2e8f0; }
+.res-box { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.res-title { font-size: 0.95rem; font-weight: 500; color: #475569; }
+.res-value { font-size: 1.25rem; font-weight: 700; color: #334155; }
+
 .card-calculo.active-result { border-color: #bbf7d0; background: #f0fdf4; }
 .card-calculo.active-result .res-value { color: var(--success); }
 .card-calculo.active-result#card-tol-item { border-color: #fed7aa; background: #fff7ed; }
 .card-calculo.active-result#card-tol-item .res-value { color: var(--warning); }
-.btn-copiar, .btn-primary, .btn-secondary { padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; border: none; }
+
+.btn-copiar, .btn-primary, .btn-secondary { padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; border: none; font-size: 0.9rem; }
 .btn-primary { background: var(--primary); color: white; }
 .btn-secondary { background: #e2e8f0; }
+.btn-copiar { background: white; border: 1px solid var(--border-color); color: var(--text-main); font-size: 0.8rem; transition: 0.1s; }
+.btn-copiar:hover { background: #f1f5f9; border-color: var(--text-light); }
+
 .border-top-dash { border-top: 1px dashed var(--border-color); padding-top: 0.5rem; margin-top: 0.25rem; }
-.exp-math-real { font-family: monospace; font-weight: bold; }
+.exp-math-real { font-family: monospace; font-weight: bold; color: #0f172a; }
 .res-value-wrapper { display: flex; justify-content: space-between; background: #f1f5f9; padding: 0.5rem; border-radius: 4px; }
 .res-badge { font-family: monospace; font-weight: bold; }
 .btn-copy-mini { padding: 0.25rem 0.5rem; font-size: 0.75rem; background: white; border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer; }
